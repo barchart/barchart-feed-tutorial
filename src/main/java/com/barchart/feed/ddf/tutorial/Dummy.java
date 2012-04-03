@@ -5,7 +5,7 @@
  *
  * http://www.opensource.org/licenses/bsd-license.php
  */
-package com.barchart.feed.tutorial;
+package com.barchart.feed.ddf.tutorial;
 
 public class Dummy {
 
