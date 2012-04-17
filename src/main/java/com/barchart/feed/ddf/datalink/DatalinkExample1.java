@@ -18,7 +18,7 @@ import com.barchart.feed.ddf.util.FeedDDF;
  * DDF_FeedClientFactory and then used to login to the server and request data.
  * <p>
  * A sample DDF_FeedHandler is provided to the FeedClient, specifying the
- * handling of feed event as well as the received data.
+ * behavior of handling feed events as well as the received data.
  * 
  */
 public class DatalinkExample1 {
@@ -33,29 +33,17 @@ public class DatalinkExample1 {
 	 */
 	public static void main(final String[] args) {
 
-		final DatalinkExample1 example = new DatalinkExample1(username,
-				password);
-
-		try {
-			Thread.sleep(300000);
-		} catch (final InterruptedException e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	public DatalinkExample1(final String username, final String password) {
-
 		/*
 		 * Here we use the default FeedClient configuration. See
 		 * DDF_FeedClientFactory for other options.
 		 */
 		final DDF_FeedClient feedClient = DDF_FeedClientFactory.newInstance();
 
+		final DatalinkExample1 d = new DatalinkExample1();
 		/*
 		 * Create a new FeedHandler object and bind it to the FeedClient
 		 */
-		feedClient.bind(new MyFeedHandler());
+		feedClient.bind(d.new MyFeedHandler());
 
 		feedClient.login(username, password);
 
@@ -71,16 +59,56 @@ public class DatalinkExample1 {
 		 */
 		feedClient.post(FeedDDF.tcpStreamRaw(symbol));
 
+		try {
+			Thread.sleep(300000);
+		} catch (final InterruptedException e) {
+			e.printStackTrace();
+		}
+
 	}
 
-	private class MyFeedHandler implements DDF_FeedHandler {
+	/**
+	 * MyFeedHandler gives the FeedClient two behaviors:
+	 * 
+	 * 1) How to handle the different FeedEvents the server sends it. 2) How to
+	 * handle the data messages the server sends it.
+	 * 
+	 */
+	public class MyFeedHandler implements DDF_FeedHandler {
 
+		/**
+		 * This basic handleEvent implementation only alerts the user that he
+		 * has been disconnected.
+		 * 
+		 * See DDF_FeedEvent for all possible feed events returned by server.
+		 */
 		@Override
 		public void handleEvent(final DDF_FeedEvent event) {
-			// TODO Auto-generated method stub
+
+			if (event != DDF_FeedEvent.HEART_BEAT) {
+				System.out.println("### FEED EVENT : " + event);
+			}
+
+			switch (event) {
+
+			case HEART_BEAT:
+				// Do nothing on hear beat
+				break;
+			case LINK_DISCONNECT:
+				// Alert user of disconnect
+				System.out.println("Attempting to reconnect");
+				break;
+			default:
+				break;
+
+			}
 
 		}
 
+		/**
+		 * This basic handleMessage implementation prints to console every
+		 * message that is not a heart beat/time stamp.
+		 */
 		@Override
 		public void handleMessage(final DDF_BaseMessage message) {
 
