@@ -19,5 +19,20 @@
 		<connection>scm:git:git://github.com/barchart/barchart-feed-tutorial.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/barchart/barchart-feed-tutorial.git</developerConnection>
 	</scm>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.barchart.feed</groupId>
+			<artifactId>barchart-feed-ddf-datalink</artifactId>
+			<version>3.2.3-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.barchart.feed</groupId>
+			<artifactId>barchart-feed-ddf-util</artifactId>
+			<version>3.2.3-SNAPSHOT</version>
+		</dependency>
+	
+	</dependencies>
 
 </project>
