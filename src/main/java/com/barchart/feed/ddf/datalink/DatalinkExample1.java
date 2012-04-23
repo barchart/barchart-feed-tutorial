@@ -23,14 +23,12 @@ import com.barchart.feed.ddf.util.FeedDDF;
  */
 public class DatalinkExample1 {
 
-	private static final String username = "andrei";
-	private static final String password = "andrei";
+	private static final String username = "username";
+	private static final String password = "password";
 
+	// Specifying Google as our symbol
 	private static final String symbol = "GOOG";
 
-	/**
-	 * @param args
-	 */
 	public static void main(final String[] args) {
 
 		/*
@@ -40,6 +38,7 @@ public class DatalinkExample1 {
 		final DDF_FeedClient feedClient = DDF_FeedClientFactory.newInstance();
 
 		final DatalinkExample1 d = new DatalinkExample1();
+
 		/*
 		 * Create a new FeedHandler object and bind it to the FeedClient
 		 */
@@ -59,6 +58,7 @@ public class DatalinkExample1 {
 		 */
 		feedClient.post(FeedDDF.tcpStreamRaw(symbol));
 
+		// Block thread for display
 		try {
 			Thread.sleep(300000);
 		} catch (final InterruptedException e) {
@@ -70,8 +70,9 @@ public class DatalinkExample1 {
 	/**
 	 * MyFeedHandler gives the FeedClient two behaviors:
 	 * 
-	 * 1) How to handle the different FeedEvents the server sends it. 2) How to
-	 * handle the data messages the server sends it.
+	 * 1) How to handle the different FeedEvents the server sends it.
+	 * <p>
+	 * 2) How to handle the data messages the server sends it.
 	 * 
 	 */
 	public class MyFeedHandler implements DDF_FeedHandler {
@@ -92,7 +93,7 @@ public class DatalinkExample1 {
 			switch (event) {
 
 			case HEART_BEAT:
-				// Do nothing on hear beat
+				// Do nothing on heart beat
 				break;
 			case LINK_DISCONNECT:
 				// Alert user of disconnect
