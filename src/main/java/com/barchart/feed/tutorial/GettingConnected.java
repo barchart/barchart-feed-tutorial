@@ -29,11 +29,12 @@ public class GettingConnected {
 		client.bindFeedStateListener(feedListener);
 		
 		try {
-			Thread.sleep(10 * 1000);
+			Thread.sleep(5 * 1000);
 		} catch(final Exception e) {
 			e.printStackTrace();
 		}
 		
+		System.out.println("***** Main class shutting down client *****");
 		client.shutdown();
 		
 	}
