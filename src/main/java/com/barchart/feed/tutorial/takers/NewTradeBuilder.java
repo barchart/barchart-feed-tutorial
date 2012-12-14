@@ -7,14 +7,14 @@ import com.barchart.feed.base.market.enums.MarketField;
 import com.barchart.feed.base.trade.api.MarketTrade;
 import com.barchart.feed.base.trade.enums.MarketTradeField;
 import com.barchart.feed.client.provider.MarketEventCallback;
-import com.barchart.feed.client.provider.MarketTakerFactory;
+import com.barchart.feed.client.provider.MarketTakerBuilder;
 import com.barchart.util.values.util.ValueUtil;
 
 public class NewTradeBuilder {
 	
 	public static MarketTaker<MarketTrade> build(final String symbol) {
 		
-		final MarketTakerFactory<MarketTrade> takerFactory = new MarketTakerFactory<MarketTrade>();
+		final MarketTakerBuilder<MarketTrade> takerFactory = new MarketTakerBuilder<MarketTrade>();
 		
 		final MarketEventCallback<MarketTrade> topOfBookCallback = new MarketEventCallback<MarketTrade>() {
 

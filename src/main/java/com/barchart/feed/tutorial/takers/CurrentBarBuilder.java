@@ -7,14 +7,14 @@ import com.barchart.feed.base.market.api.MarketTaker;
 import com.barchart.feed.base.market.enums.MarketEvent;
 import com.barchart.feed.base.market.enums.MarketField;
 import com.barchart.feed.client.provider.MarketEventCallback;
-import com.barchart.feed.client.provider.MarketTakerFactory;
+import com.barchart.feed.client.provider.MarketTakerBuilder;
 import com.barchart.util.values.util.ValueUtil;
 
 public class CurrentBarBuilder {
 
 	public static MarketTaker<MarketBar> build(final String symbol) {
 		
-		final MarketTakerFactory<MarketBar> takerFactory = new MarketTakerFactory<MarketBar>();
+		final MarketTakerBuilder<MarketBar> takerFactory = new MarketTakerBuilder<MarketBar>();
 		
 		/*
 		 * Build MarketTaker for the BAR_CURRENT to fire on NEW_BAR_CURRENT event

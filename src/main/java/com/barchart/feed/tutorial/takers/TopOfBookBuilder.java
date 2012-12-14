@@ -8,14 +8,14 @@ import com.barchart.feed.base.market.api.MarketTaker;
 import com.barchart.feed.base.market.enums.MarketEvent;
 import com.barchart.feed.base.market.enums.MarketField;
 import com.barchart.feed.client.provider.MarketEventCallback;
-import com.barchart.feed.client.provider.MarketTakerFactory;
+import com.barchart.feed.client.provider.MarketTakerBuilder;
 import com.barchart.util.values.util.ValueUtil;
 
 public class TopOfBookBuilder {
 
 	public static MarketTaker<MarketBookTop> build(final String symbol) {
 		
-		final MarketTakerFactory<MarketBookTop> takerFactory = new MarketTakerFactory<MarketBookTop>();
+		final MarketTakerBuilder<MarketBookTop> takerFactory = new MarketTakerBuilder<MarketBookTop>();
 		
 		/*
 		 * Build MarketTaker for BOOK_TOP to fire on NEW_BOOK_TOP
